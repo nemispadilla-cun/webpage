@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Político - Litografía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-title {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .product-description {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .product-features li {
+            padding: 0.4rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .product-features li:before {
+            content: "✓ ";
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .price-tag {
+            background: #4caf50;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗳️ CATÁLOGO POLÍTICO 2025</h1>
+        <p class="subtitle">Material Publicitario de Alta Calidad para Campañas Exitosas</p>
+        <span class="badge">Concejo • Alcaldía • Senado • Congreso</span>
+    </div>
+
+    <div class="container">
+        <div class="intro">
+            <h2>🚀 Impulsa Tu Campaña con Nosotros</h2>
+            <p>Somos especialistas en material publicitario político. Entregamos productos de alta calidad, tiempos récord y precios competitivos. ¡Tu éxito electoral es nuestra prioridad!</p>
+        </div>
+
+        <!-- CATEGORÍA: MATERIAL IMPRESO -->
+        <div class="category">
+            <div class="category-title">📄 MATERIAL IMPRESO BÁSICO</div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">📋</div>
+                    <div class="product-name">Volantes / Flyers</div>
+                    <div class="product-description">Ideales para distribución masiva puerta a puerta y eventos políticos</div>
+                    <ul class="product-features">
+                        <li>Papel couché 115gr - 150gr</li>
+                        <li>Full color (CMYK)</li>
+                        <li>Tamaños: 1/4, 1/2, carta</li>
+                        <li>Mínimo: 1,000 unidades</li>
+                    </ul>
+                    <div class="price-tag">Desde $80 por millar</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📰</div>
+                    <div class="product-name">Folletos / Brochures</div>
+                    <div class="product-description">Presentación completa de tu propuesta electoral</div>
+                    <ul class="product-features">
+                        <li>Dípticos / Trípticos</li>
+                        <li>Papel couché 150gr - 300gr</li>
+                        <li>Barniz opcional</li>
+                        <li>Diseño impactante</li>
+                    </ul>
+                    <div class="price-tag">Desde $200 por millar</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">💼</div>
+                    <div class="product-name">Tarjetas Personales</div>
+                    <div class="product-description">Networking profesional para tu campaña</div>
+                    <ul class="product-features">
+                        <li>Papel especial 300gr</li>
+                        <li>Laminado mate o brillante</li>
+                        <li>Tamaño estándar</li>
+                        <li>Alta durabilidad</li>
+                    </ul>
+                    <div class="price-tag">Desde $50 por millar</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📑</div>
+                    <div class="product-name">Hojas Volantes</div>
+                    <div class="product-description">Información rápida y directa para el votante</div>
+                    <ul class="product-features">
+                        <li>Papel bond o couché</li>
+                        <li>Una o dos caras</li>
+                        <li>Diversos tamaños</li>
+                        <li>Entrega express</li>
+                    </ul>
+                    <div class="price-tag">Desde $60 por millar</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA: PENDONES Y VALLAS -->
+        <div class="category">
+            <div class="category-title">🎯 PENDONES Y VALLAS PUBLICITARIAS</div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🎪</div>
+                    <div class="product-name">Pendones Publicitarios</div>
+                    <div class="product-description">Máxima visibilidad en espacios públicos</div>
+                    <ul class="product-features">
+                        <li>Lona front 13oz o 10oz</li>
+                        <li>Impresión full color</li>
+                        <li>Con ojales reforzados</li>
+                        <li>Tamaños personalizados</li>
+                    </ul>
+                    <div class="price-tag">Desde $25,000 por m²</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📐</div>
+                    <div class="product-name">Pasacalles</div>
+                    <div class="product-description">Impacto visual en vías principales</div>
+                    <ul class="product-features">
+                        <li>Lona resistente al clima</li>
+                        <li>Medidas estándar o custom</li>
+                        <li>Colores vibrantes</li>
+                        <li>Sistema de instalación incluido</li>
+                    </ul>
+                    <div class="price-tag">Desde $80,000 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🏢</div>
+                    <div class="product-name">Vallas Móviles</div>
+                    <div class="product-description">Publicidad en movimiento constante</div>
+                    <ul class="product-features">
+                        <li>Material flexible duradero</li>
+                        <li>Fácil instalación</li>
+                        <li>Transportable</li>
+                        <li>Resistente a exteriores</li>
+                    </ul>
+                    <div class="price-tag">Consultar precio</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎭</div>
+                    <div class="product-name">Banderas Publicitarias</div>
+                    <div class="product-description">Ondea tu mensaje con estilo</div>
+                    <ul class="product-features">
+                        <li>Tela satinada resistente</li>
+                        <li>Diversos tamaños</li>
+                        <li>Con base o sin base</li>
+                        <li>Tipo gota, pluma o recta</li>
+                    </ul>
+                    <div class="price-tag">Desde $45,000 c/u</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA: MATERIAL PROMOCIONAL -->
+        <div class="category">
+            <div class="category-title">🎁 MATERIAL PROMOCIONAL</div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🎽</div>
+                    <div class="product-name">Camisetas Estampadas</div>
+                    <div class="product-description">Identifica a tu equipo de campaña</div>
+                    <ul class="product-features">
+                        <li>Tela de algodón o dry fit</li>
+                        <li>Estampado en alta calidad</li>
+                        <li>Todas las tallas</li>
+                        <li>Colores personalizados</li>
+                    </ul>
+                    <div class="price-tag">Desde $12,000 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🧢</div>
+                    <div class="product-name">Gorras Personalizadas</div>
+                    <div class="product-description">Regalo perfecto para simpatizantes</div>
+                    <ul class="product-features">
+                        <li>Bordado o estampado</li>
+                        <li>Diversos colores</li>
+                        <li>Ajustable</li>
+                        <li>Excelente calidad</li>
+                    </ul>
+                    <div class="price-tag">Desde $8,000 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎒</div>
+                    <div class="product-name">Bolsas Ecológicas</div>
+                    <div class="product-description">Publicidad útil y sustentable</div>
+                    <ul class="product-features">
+                        <li>Material reutilizable</li>
+                        <li>Impresión a 1 o 2 tintas</li>
+                        <li>Resistentes</li>
+                        <li>Mensaje ecológico</li>
+                    </ul>
+                    <div class="price-tag">Desde $2,500 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🖊️</div>
+                    <div class="product-name">Esferos / Lapiceros</div>
+                    <div class="product-description">Útiles y económicos para eventos</div>
+                    <ul class="product-features">
+                        <li>Impresión de logo</li>
+                        <li>Diversos colores</li>
+                        <li>Tinta duradera</li>
+                        <li>Mínimo: 500 unidades</li>
+                    </ul>
+                    <div class="price-tag">Desde $800 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔖</div>
+                    <div class="product-name">Stickers / Calcomanías</div>
+                    <div class="product-description">Bajo costo, alto impacto visual</div>
+                    <ul class="product-features">
+                        <li>Vinilo adhesivo</li>
+                        <li>Resistente al agua</li>
+                        <li>Diversos tamaños</li>
+                        <li>Troquelado disponible</li>
+                    </ul>
+                    <div class="price-tag">Desde $300 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📌</div>
+                    <div class="product-name">Botones / Pins</div>
+                    <div class="product-description">Identificación visible para militantes</div>
+                    <ul class="product-features">
+                        <li>Diversos tamaños</li>
+                        <li>Impresión full color</li>
+                        <li>Pin de seguridad</li>
+                        <li>Acabado profesional</li>
+                    </ul>
+                    <div class="price-tag">Desde $1,200 c/u</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA: SEÑALIZACIÓN Y EVENTOS -->
+        <div class="category">
+            <div class="category-title">🎪 SEÑALIZACIÓN Y EVENTOS</div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🎨</div>
+                    <div class="product-name">Afiches / Pósters</div>
+                    <div class="product-description">Decoración para sedes y eventos</div>
+                    <ul class="product-features">
+                        <li>Papel couché o propalcote</li>
+                        <li>Tamaños: A4, A3, 50x70cm</li>
+                        <li>Laminado opcional</li>
+                        <li>Alta resolución</li>
+                    </ul>
+                    <div class="price-tag">Desde $5,000 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🪧</div>
+                    <div class="product-name">Atriles Publicitarios</div>
+                    <div class="product-description">Roll up banner profesional</div>
+                    <ul class="product-features">
+                        <li>Sistema retráctil</li>
+                        <li>80x200cm o 100x200cm</li>
+                        <li>Incluye bolsa de transporte</li>
+                        <li>Fácil montaje</li>
+                    </ul>
+                    <div class="price-tag">Desde $120,000 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">⛺</div>
+                    <div class="product-name">Carpas Publicitarias</div>
+                    <div class="product-description">Espacios de campaña personalizados</div>
+                    <ul class="product-features">
+                        <li>3x3m o 3x6m</li>
+                        <li>Impresión en techo</li>
+                        <li>Estructura metálica</li>
+                        <li>Instalación incluida</li>
+                    </ul>
+                    <div class="price-tag">Desde $850,000 c/u</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎫</div>
+                    <div class="product-name">Pases / Credenciales</div>
+                    <div class="product-description">Control de acceso en eventos</div>
+                    <ul class="product-features">
+                        <li>PVC con cordón</li>
+                        <li>Impresión a color</li>
+                        <li>Laminado protector</li>
+                        <li>Personalizado</li>
+                    </ul>
+                    <div class="price-tag">Desde $3,000 c/u</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA: DIGITAL E IMPRESIÓN ESPECIAL -->
+        <div class="category">
+            <div class="category-title">💻 SERVICIOS ADICIONALES</div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🎨</div>
+                    <div class="product-name">Diseño Gráfico</div>
+                    <div class="product-description">Propuesta visual profesional</div>
+                    <ul class="product-features">
+                        <li>Logo de campaña</li>
+                        <li>Imagen corporativa</li>
+                        <li>Artes finales</li>
+                        <li>Revisiones incluidas</li>
+                    </ul>
+                    <div class="price-tag">Desde $150,000</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📸</div>
+                    <div class="product-name">Fotografía Profesional</div>
+                    <div class="product-description">Imágenes de campaña de calidad</div>
+                    <ul class="product-features">
+                        <li>Sesión personalizada</li>
+                        <li>Edición profesional</li>
+                        <li>Entrega digital</li>
+                        <li>Múltiples escenarios</li>
+                    </ul>
+                    <div class="price-tag">Desde $300,000</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📦</div>
+                    <div class="product-name">Paquetes Completos</div>
+                    <div class="product-description">Todo lo que necesitas en un solo paquete</div>
+                    <ul class="product-features">
+                        <li>Volantes + Pendones + Camisetas</li>
+                        <li>Descuentos especiales</li>
+                        <li>Diseño incluido</li>
+                        <li>Planes desde $2M</li>
+                    </ul>
+                    <div class="price-tag">¡Consulta oferta!</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🚚</div>
+                    <div class="product-name">Entrega a Domicilio</div>
+                    <div class="product-description">Llevamos tu material donde lo necesites</div>
+                    <ul class="product-features">
+                        <li>Cobertura nacional</li>
+                        <li>Entregas urgentes</li>
+                        <li>Seguimiento en línea</li>
+                        <li>Empaque seguro</li>
+                    </ul>
+                    <div class="price-tag">Según ubicación</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>🤝 ¡Trabajemos Juntos por tu Victoria Electoral!</h3>
+        
+        <div class="benefits">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h4>Entregas Rápidas</h4>
+                <p>Cumplimos con los tiempos de tu campaña</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💎</div>
+                <h4>Calidad Premium</h4>
+                <p>Materiales de la más alta calidad</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h4>Precios Competitivos</h4>
+                <p>La mejor relación calidad-precio</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h4>Experiencia Política</h4>
+                <p>Conocemos las necesidades de tu campaña</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <p>📱 Celular/WhatsApp: [TU NÚMERO]</p>
+            <p>📧 Email: [TU EMAIL]</p>
+            <p>📍 Medellín, Colombia</p>
+        </div>
+
+        <a href="#" class="cta-button">¡SOLICITA TU COTIZACIÓN AHORA!</a>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            * Precios sujetos a cambios según cantidades y especificaciones<br>
+            ** Diseño gratis en pedidos mayores a $1.000.000
+        </p>
+    </div>
+</body>
+</html>
